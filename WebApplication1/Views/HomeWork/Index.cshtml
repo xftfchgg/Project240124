@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div class="div1">
+
+ @*     <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>  *@
+
+</div>
+
+@section scripts{
+    <script src="~/js/travel.js"></script>
+    <script>
+        console.log(spots.CommonFormat.Section);
+        let img = "";
+
+        const theDiv = document.querySelector(".div1")
+        let Data = spots.CommonFormat.Section.map(spot => {
+
+            const { xbody, file} = spot //解構賦值
+            try {
+                img = file.img[0].text
+            }
+            catch {
+                img =""
+            }
+
+
+            return (
+                `
+                    <div class="card" style="width: 18rem;">
+                                                <img class="card-img-top" src="${img}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">${xbody}</p>
+                        </div>
+                    </div>
+                `
+            )
+        });
+
+        theDiv.innerHTML = Data.join("");
+
+
+
+    </script>
+}
+

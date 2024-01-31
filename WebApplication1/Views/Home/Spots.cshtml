@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "Spots";
+}
+
+<h1>Spots</h1>
+<div class="row mb-3">
+	<div class="col-3"></div>
+	<div class="col-6"></div>
+	<div class="col-3">
+		<input type="text" class="form-control" id="inputkeyword" placeholder="請輸入關鍵字">
+	</div>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-4" id="spots"></div>
+
+@section Scripts{
+	<script>
+		const searchData = {
+			"categoryId": 0,
+			"keyword": "北投",
+			"page": 1,
+			"pageSize": 9,
+			"sortType": "asc",
+			"sortBy": ""
+		}
+
+		const divSpots = document.querySelector('#spots');
+		const inpKeyword = document.querySelector('#inputkeyword');
+
+		//根據searchData的條件，讀取景點資料
+		const loadSpots = async () => {
+			const response = await fetch('@Url.Content("~/api/spots")', {
+				method: 'POST',
+				body: JSON.stringify(searchData),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			const datas = await response.json();
+			const cardSpots = datas.spotsResult.map(spot => {
+				const { spotId, spotTitle, spotDescription, spotImage, address } = spot;
+
+				return (`
+	                <div class="col">
+						<div class="card h-100">
+											<img src="${spotImage}" class="card-img-top" alt="${spotTitle}">
+							<div class="card-body">
+												<h5 class="card-title">${spotId} - ${spotTitle}</h5>
+														<p class="card-text">${spotDescription.length <= 100 ? spotDescription : spotDescription.substring(0, 100)}...</p>
+							</div>
+							<div class="card-footer">
+										<small class="text-body-secondary">${address}</small>
+							</div>
+						</div>
+					</div>
+
+							`
+				)
+			})
+
+			divSpots.innerHTML = cardSpots.join("");
+			//console.log(datas);
+
+
+			//監聽input的輸入事件
+			inpKeyword.addEventListener('keydown', event => {
+				
+				if (event.which === 13) {
+					searchData.keyword = event.target.value;
+					searchData.page = 1;
+					loadSpots();
+				}
+			});
+		}
+		//載入景點
+		loadSpots();
+
+
+	</script>
+}
+	
+

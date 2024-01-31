@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "Work2";
+}
+
+<h1>Work2</h1>
+@* 姓名:<br/>
+<input type="text" id="Name" class="mb-3" />
+<div id="result">
+
+</div>
+<br />
+電子郵件:
+<br />
+<input type="text" id="Email" class="mb-3" />
+<br />
+年紀:
+<br />
+<input type="text" id="Age"  class="mb-3"/>
+<br />
+<input type="button" id="btn1" class="btn btn-sm btn-success mb-3" value="送出" /> *@
+
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form id="userForm">
+            <div class="mb-3">
+                <label for="userName"  class="form-label">姓名：</label>
+                <input type="text" class="form-control" id="userName" name="Name">
+            </div>
+            <div id="result">
+            </div>
+            <div class="mb-3">
+                <label for="UserEmail" class="form-label">電子郵件：</label>
+                <input type="email" class="form-control" id="UserEmail" name="Email">
+            </div>
+            <div class="mb-3">
+                <label for="userAge" class="form-label">年紀：</label>
+                <input type="number" class="form-control" id="userAge" name="Age">
+            </div>
+
+			<div class="mb-3">
+				<label for="userAvatar" class="form-label">頭像：</label>
+				<input type="file" class="form-control" id="userAvatar" name="Avatar">
+			</div>
+
+            <button id="button1" type="submit" class="btn btn-primary">送出</button>
+        </form>
+        <div class="alert alert-info" id="div1"></div>
+    </div>
+    <div class="col-3">
+    </div>
+</div>
+
+
+@section Scripts {
+	<script>
+		const theDiv = document.querySelector("#result");
+        const theName = document.querySelector("#userName");
+		// const theEmail = document.querySelector("#UserEmail");
+		// const theAge = document.querySelector("#userAge");
+		const theAvatar = document.querySelector("#userAvatar");
+		const btn = document.querySelector("#button1");
+		const divInfo = document.querySelector("#div1");
+		const theForm = document.querySelector("#userForm");
+
+
+		theName.addEventListener("focusout", async () => {
+			var name = theName.value;
+
+			const response = await fetch(`@Url.Content("~/api/CheckAccount")?name=${name}`);
+
+			const result = await response.text();	
+
+			theDiv.innerHTML = `<p>${result}</p>`;
+		});
+		// (async () => {
+		// 	const response = await fetch('@Url.Content("~/api/cities")');
+		// 	const cities = await response.json();
+		// 	const optCities = cities.map(city => `<option value="${city}">${city}</option>`);
+		// 	selCity.innerHTML = optCities.join("");
+		// })();
+
+        btn.addEventListener('click', async (event) => {
+			event.preventDefault();//防止表單 submit 送出的功能
+
+            //透過FormData物件讀取資料
+			const formData = new FormData(theForm);
+			// formData.append("city", "中壢");
+   //          for (const pair of formData.entries()) {
+			// 	console.log(pair[0]);
+   //              console.log(pair[1]);
+   //          }
+			//將FormData物件傳送到server
+			const url = `@Url.Content("~/api/register")`;
+			const response = await fetch(url, {
+				method: 'POST',
+				body: formData
+			});
+			const result = await response.text();
+			divInfo.innerHTML = `<p>${result}</p>`;
+
+			// const url = `@Url.Content("~/api/CheckAccount")?name=${theName.value}&email=${theEmail.value}&age=${theAge.value}`;
+			// const response = await fetch(url);
+			// const result = await response.text();
+			// divInfo.innerHTML = `<p>${result}</p>`;
+        })
+
+	</script>
+}

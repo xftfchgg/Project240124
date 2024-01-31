@@ -1,0 +1,79 @@
+﻿@{
+	ViewData["Title"] = "First";
+}
+
+<h2>First</h2>
+
+<button id="button1" class="btn btn-sm btn-primary mb-3">go</button>
+<button id="button2" class="btn btn-sm btn-primary mb-3">stop</button>
+<img src="~/Images/22.gif" id="imgLoading" style="display:none" />
+<div id="div1" class="alert alert-info"></div>
+
+@section Scripts{
+	<script>
+		const btngo = document.querySelector('#button1');
+		const btnstop = document.querySelector('#button2');
+		const theDiv = document.querySelector('#div1');
+		const imgLoader = document.querySelector('#imgLoading');
+		// btn.addEventListener('click', () => {
+		// 	//~指向專案根目錄
+		// 	//fetch('~/api/index') 不能使用~
+		// 	fetch('@Url.Content("~/api.index")')
+		// 		.then(response => {
+		// 			//取出header資料
+		// 			return response.text();
+		// 		})
+		// 		.then(data => {
+		// 			//讀出資料 顯示資料
+		// 			theDiv.innerHTML = `<h2>${data}</h2>`;
+		// 		})
+
+
+
+		// 	// theDiv.innerHTML = "Ajax...";
+		// })
+		let abortController
+
+		btnstop.addEventListener('click', () => {
+			if (abortController) {
+				abortController.abort();
+			}
+		})
+
+		btngo.addEventListener('click',async () => { 
+			try {
+				//顯示執行中圖片
+				imgLoader.style.display = "inline";
+				//停用按鈕
+				btngo.setAttribute('disabled', 'disabled');
+
+				//建立AbortCcontroller物件
+				abortController = new AbortController();
+				const signal = abortController.signal;
+
+
+				//Ajax
+				const response = await fetch('@Url.Content("~/api/index")', {signal});
+				//const response = await fetch('@Url.Content("~/api/index")');
+
+				//not false
+				if (!response.ok) {
+					throw new Error(response.status);
+				}
+				const data = await response.text();
+				theDiv.innerHTML = `<h2>${data}</h2>`;
+			} catch (err) {
+				theDiv.innerHTML = `<h2>${err}</h2>`;
+			} finally {
+				//隱藏圖片
+				imgLoader.style.display = "none";
+				//啟用按鈕
+				btngo.removeAttribute('disabled');
+			}
+		})
+
+
+
+
+	</script>
+}
