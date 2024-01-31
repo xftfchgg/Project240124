@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="./scss/custom.css">
+  <!-- <link rel="stylesheet" href="./bootstrap-5.3.2-dist/css/bootstrap.min.css"> -->
+  <style>
+    .root {
+      --main-color: lightblue;
+    }
+
+    .sidebar{
+      top: calc(56px+48px);
+      z-index: 1019;
+    }
+
+
+    .image {
+      width: 150px;
+      height: 150px;
+    }
+
+    .image1 {
+      width: 100%;
+      height: 150px;
+    }
+  </style>
+</head>
+
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="plane" viewBox="0 0 16 16">
+      <path
+        d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1s-.458.158-.678.599" />
+    </symbol>
+  </svg>
+
+
+  <nav class="navbar navbar-expand-sm bg-white shadow-sm sticky-top" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">08 Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#top">TOP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#content">內文</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#message">留言</a>
+          </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#
+            message1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              留言
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal say</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          hi
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- object-fit-cover -->
+  <!-- 圖片輪播 -->
+  <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="1000">
+        <img src="../star_e.png" class="d-block w-100  image1 " alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="1000">
+        <img src="../star_lightyellow.png" class="d-block w-100  image1 " alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="1000">
+        <img src="../star_yellow.png" class="d-block w-100  image1 " alt="...">
+      </div>
+    </div>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+
+  <div class="container-fluid bg-primary  pt-4">
+    <div class="row gy-4">
+      <div class="col-12 col-sm-8">
+        <div>
+          <!-- <img src="../otani.jpg" alt="" class="image1"> -->
+        </div>
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">首頁</a></li>
+            <li class="breadcrumb-item"><a href="#">Bootstrap</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Grid</li>
+          </ol>
+        </nav>
+
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            分類
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">教學</a></li>
+            <li><a class="dropdown-item" href="#">測試</a></li>
+            <li><a class="dropdown-item" href="#">實作</a></li>
+          </ul>
+        </div>
+
+
+
+
+
+
+        <div class="bg-white p-3">
+          <h1 class="display-4 text-bg-primary p-2" id="content">Bootstrap Grid：打造網頁佈局的完美解決方案</h1>
+          <p style="white-space: pre-line;">
+            嘿，大家好！今天我們要一起探索 Bootstrap 的 Grid（網格）系統，這是設計師和開發者的秘密武器，能夠輕鬆打造出令人驚艷的網頁佈局。快跟著我們一起踏上這趟有趣的旅程吧！
+
+            在網頁設計中，佈局是關鍵要素之一。Bootstrap 的 Grid 系統提供了一套簡單而強大的工具，讓我們能夠有效地管理和組織網頁中的內容。
+
+            首先，我們要認識兩個基本元素：列和欄。列就像是網格中的一行，而欄則是列中的一個小單位。透過列和欄的組合，我們可以建立出彈性且有結構的網頁佈局。
+
+            在 Bootstrap 中，我們使用 .row 類別來創建一個列。這個類別會幫助我們將欄位放置在同一行中，讓它們保持整齊對齊。
+
+            接著，我們使用 .col-* 類別來設定欄位的寬度比例。這個類別可以根據需要調整欄位的大小，讓它們適應不同的螢幕尺寸。
+
+            舉個例子來說，如果我們想要兩個欄位佔據同樣的寬度，可以使用 .col-6 類別，其中的數字表示佔據的比例。同樣地，如果我們想要四個欄位佔據相等的空間，可以使用 .col-3。
+
+            另外，Bootstrap 的 Grid 系統還支援斷點（Breakpoints），根據不同的螢幕尺寸調整佈局。例如，我們可以使用 .col-md-* 類別來設定在中型螢幕上的欄位寬度。
+
+            在建立佈局時，記得保持簡潔且易於閱讀。過度使用欄位和過多的嵌套可能會讓佈局變得混亂，難以維護。著重於清晰度和一致性，讓網頁內容能夠自然地流動。
+
+            重要的是，Bootstrap Grid 系統不僅僅局限於基本的佈局。我們還可以進一步探索其他功能和選項，例如偏移（Offset）和嵌套（Nesting）。
+
+            偏移允許我們在列中創建一些空白區域，讓內容有更好的視覺分隔效果。我們可以使用 .offset-* 類別來達到這個效果。例如，如果我們想要在一列中的第一個欄位前留出一些空間，可以使用
+            .offset-2，其中的數字表示偏移的欄位數量。
+
+            嵌套是一種有趣且強大的功能，它允許我們在一個欄位中再次建立新的列和欄。這讓我們能夠在一個欄位中建立更複雜的佈局結構。使用 .row 和 .col-* 來建立嵌套佈局，並根據需要繼續添加更多的欄位。
+
+            另外，Bootstrap Grid 系統還提供了一些實用的類別，例如對齊方式（Alignment）和內容填充（Padding）。我們可以使用 .justify-content-*
+            來調整欄位的水平對齊方式，例如靠左對齊或置中對齊。而 .p-* 類別則可以用於設定欄位的內容填充。
+
+            除了基本的類別之外，Bootstrap Grid 還提供了更多進階的選項和自訂性。你可以參考 Bootstrap 官方文件和範例，深入瞭解更多關於 Grid 系統的功能和用法。
+
+            嘿，現在是時候發揮你的創意，用 Bootstrap Grid 打造出一個令人驚艷的網頁佈局吧！這個強大的工具將讓你的網頁更具結構性和視覺吸引力。加油，我們期待看到你的精彩作品！♪
+          </p>
+
+
+
+
+
+          <!-- 頁籤 -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="Table-tab" data-bs-toggle="tab" data-bs-target="#Table-tab-pane"
+                type="button" role="tab" aria-controls="Table-tab-pane" aria-selected="true">Table</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="accordion-tab" data-bs-toggle="tab" data-bs-target="#accordion-tab-pane"
+                type="button" role="tab" aria-controls="accordion-tab-pane" aria-selected="false">Accordion</button>
+            </li>
+            <!-- <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane"
+                type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false"
+                disabled>Disabled</button> -->
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="Table-tab-pane" role="tabpanel" aria-labelledby="Table-tab"
+              tabindex="0">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-sm caption-top">
+                  <caption>這個表格提供了一個簡單的概覽，介紹了一些常見的 Bootstrap 元件及其功能：</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-nowrap">編號</th>
+                      <th scope="col" class="text-nowrap">元件</th>
+                      <th scope="col" class="text-nowrap">英文名稱</th>
+                      <th scope="col" class="text-nowrap">描述</th>
+                      <th scope="col" class="text-nowrap">連結</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>網格</td>
+                      <td>Grid</td>
+                      <td>Bootstrap的佈局系統，用於創建靈活的網頁佈局</td>
+                      <td>https://getbootstrap.com/docs/5.3/layout/grid/</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>按鈕</td>
+                      <td>Button</td>
+                      <td> 使用不同樣式和大小的按鈕增加互動性和功能</td>
+                      <td>https://getbootstrap.com/docs/5.3/components/buttons/</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>模式對話框</td>
+                      <td>Modal</td>
+                      <td>創建視窗對話框，用於顯示詳細內容或進行操作</td>
+                      <td>https://getbootstrap.com/docs/5.3/components/modal/</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="accordion-tab-pane" role="tabpanel" aria-labelledby="accordion-tab"
+              tabindex="0">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#buttonCollapseOne" aria-expanded="true" aria-controls="buttonCollapseOne">
+                      加強網頁互動！Bootstrap Modal 教學
+                    </button>
+                  </h2>
+                  <div id="buttonCollapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                      <strong>2023/5/19</strong> 讓我們一起探索 Bootstrap 的 Modal
+                      功能，這是一個強大的互動元件，可以讓我們在網頁中顯示彈出視窗，實現更多元化的互動效果。在這篇教學中，我們將學習如何使用 Bootstrap的
+                      Modal，包括觸發機制、自訂樣式和動畫效果，讓我們的網頁更加生動有趣～
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#buttonCollapseTwo" aria-expanded="false" aria-controls="buttonCollapseTwo">
+                      華麗又實用！打造漂亮按鈕的 Bootstrap 教學
+                    </button>
+                  </h2>
+                  <div id="buttonCollapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                      <strong>2023/5/22</strong> 在這篇教學中，我們將一起探索 Bootstrap
+                      的按鈕元件，讓我們的網頁華麗又實用！我們將學習如何使用不同的按鈕樣式、大小和狀態，並添加圖標或下拉選單等功能。透過 Bootstrap的強大按鈕元件，我們可以輕鬆打造出各種吸引人的互動元素～
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#formcollapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      簡化表單設計！Bootstrap Form 教學
+                    </button>
+                  </h2>
+                  <div id="formcollapseThree" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                      <strong>2023/5/18</strong> 讓我們來簡化表單設計的過程吧！在這篇教學中，我們將探索 Bootstrap 的 Form
+                      元件，讓表單設計變得輕鬆又美觀。我們將學習如何使用不同的表單控制項、佈局工具和驗證功能，提升用戶體驗並節省開發時間。透過 Bootstrap 的強大 Form
+                      元件，我們可以輕鬆打造出專業又方便使用的表單～
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- 進度條 -->
+            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+            </div>
+
+
+
+            <!-- <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+              ...</div>
+            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
+              tabindex="0">...</div> -->
+          </div>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link">Previous</a>
+              </li>
+              <li class="page-item"><span class="page-link active" href="#">1</span></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+
+
+
+
+
+
+
+          <div id="message"></div>
+          <h2 class="text-primary">留個言吧!</h2>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#form" role="button" aria-expanded="false"
+            aria-controls="collapseExample">
+            Link with href
+          </a>
+          <form class="form-floating mb-3 collapse" id="form">
+
+            <label for="nameInput">姓名或暱稱</label>
+            <input type="text" class="form-control" id="nameInput" placeholder="">
+
+          </form>
+          <div class="mb-3">
+            <label for="emailInput" class="form-label">Email</label>
+            <div class="input group">
+              <input id="emailInput" type="text" class="form-control" placeholder="請輸入email" aria-label="請輸入email">
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Leave a comment here" id="commentTextarea"></textarea>
+            <label for="commentTextarea">留言</label>
+          </div>
+
+          <label for="moreDataList" class="form-label">test form select</label>
+          <input class="form-control" list="moreOptions" id="moreDataList" placeholder="Type to search...">
+          <datalist id="moreOptions">
+            <option value="San Francisco">
+            <option value="New York">
+            <option value="Seattle">
+          </datalist>
+          <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" role="switch" id="subscribeSwitch">
+            <label class="form-check-label" for="subscribeSwitch">是否訂閱</label>
+          </div>
+          <!-- </form> -->
+
+          <div id="alertContainer"></div>
+          <button type="button" class="btn btn-primary d-flex align-items-center" id="alertbtn">
+            <svg width="16" height="16" fill="currentColor" class="bi bi-airplane" role="img">
+              <use xlink:href="#plane" />
+            </svg>
+            驚喜
+          </button>
+
+          <!-- <button type="button" class="btn btn-primary" id="toastBtn">toast</button>
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <img src="..." class="rounded me-2" alt="...">
+              <strong class="me-auto">toast</strong>
+              <small>1分鐘前</small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              Hello!
+            </div>
+          </div> -->
+
+
+          <!-- Toast -->
+
+          <button type="button" class="btn btn-primary" id="toastBtn">toast</button>
+
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">toast</strong>
+                <small>1分鐘前</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                Hello!
+              </div>
+            </div>
+          </div>
+
+          <!-- popover -->
+          <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover say"
+            data-bs-content="午安">popover want to say</button>
+
+          <!-- modal btn -->
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">
+            modal
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-4 ">
+
+        <div class="vstack gap-3 bg-dark-subtle p-3 ">
+          <h4 class="text-primary">更多文章</h4>
+          <div class="vstack gap-1 order-2">
+            <h5 class="text-truncate">
+              <!-- <h5 class="position-relative"> -->
+              <span class="badge bg-secondary position-absolute  translate-middle">2</span>
+              <!-- <span class="badge bg-secondary position-absolute top-0 start-0 translate-middle">2</span> -->
+              加強網頁互動！Bootstrap Modal 教學
+            </h5>
+            <div>
+              <div>2023/5/19</div>
+              <p>讓我們一起探索 Bootstrap 的 Modal 功能，這是一個強大的互動元件，可以讓我們在網頁中顯示彈出視窗，實現更多元化的互動效果。在這篇教學中，我們將學習如何使用 Bootstrap的
+                Modal，包括觸發機制、自訂樣式和動畫效果，讓我們的網頁更加生動有趣～</p>
+            </div>
+          </div>
+
+          <!-- <div class="vstack gap-1 order-3">
+            <div class="card">
+              <img src="./view4.jpg" class="card-img-top" alt="...">
+
+              <div class="card-body">
+                <h5 class="card-title text-truncate">華麗又實用！打造漂亮按鈕的 Bootstrap 教學</h5>
+                <div>2023/5/22</div>
+                <p class="card-text">在這篇教學中，我們將一起探索 Bootstrap 的按鈕元件，讓我們的網頁華麗又實用！我們將學習如何使用不同的按鈕樣式、大小和狀態，並添加圖標或下拉選單等功能。透過
+                  Bootstrap的強大按鈕元件，我們可以輕鬆打造出各種吸引人的互動元素～</p> -->
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          <!-- </div>
+            </div> -->
+
+          <div class="card gap-1 placeholder-glow order-3" aria-hidden="true">
+            <img src="./view4.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title placeholder-glow">
+                <div class="placeholder col-6"></div>
+              </h5>
+              <p class="card-text placeholder-glow">
+                <span class="placeholder col-7"></span>
+                <span class="placeholder col-4"></span>
+                <span class="placeholder col-4"></span>
+                <span class="placeholder col-6"></span>
+                <span class="placeholder col-8"></span>
+              </p>
+              <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+          <!-- </div> -->
+          <!-- <div class="vstack gap-1 order-3">
+            <h5 class="text-truncate">華麗又實用！打造漂亮按鈕的 Bootstrap 教學</h5>
+            <div>2023/5/22</div>
+            <p>在這篇教學中，我們將一起探索 Bootstrap 的按鈕元件，讓我們的網頁華麗又實用！我們將學習如何使用不同的按鈕樣式、大小和狀態，並添加圖標或下拉選單等功能。透過
+              Bootstrap的強大按鈕元件，我們可以輕鬆打造出各種吸引人的互動元素～</p>
+          </div> -->
+          <div class="d-flex gap-1 order-1">
+            <div class="vstack">
+              <h5 class="text-truncate">簡化表單設計！Bootstrap Form 教學</h5>
+              <div class="mt-auto">
+                <div>2023/5/18</div>
+                <p>100人看過</p>
+              </div>
+            </div>
+            <div class="image ">
+              <img src="../otani.jpg" alt="" class="img-thunbnail w-100 h-100 object-fit-cover">
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="bg-white p-4 rounded-4 shadow-sm">
+          <h4 class="text-primary text-center">文章分享</h4>
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active d-flex justify-content-between"
+              aria-current="true">
+              教學
+              <span class="badge rounded-pill bg-warning d-flex justify-content-center align-items-center">20</span>
+            </a>
+
+            <a href="#" class="list-group-item list-group-item-action">案例</a>
+            <a href="#" class="list-group-item list-group-item-action">分享</a>
+          </div>
+        </div>
+
+
+
+        <div class="vstack gap-3 bg-white p-3 sticky-top">
+          <h4>關於我</h4>
+          <div>
+            <img src="../view4.jpg" alt="star" class="rounded-circle w-25">
+          </div>
+          <dl class="row">
+            <dt class="col-4">Email</dt>
+            <dd class="col-8 text-break">k33333333333@gmail.com</dd>
+            <dt class="col-4">DC</dt>
+            <dd class="col-8">xftfchgg</dd>
+          </dl>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div> -->
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <!-- <script src="./bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script> -->
+
+  <script>
+    const alertContainer = document.getElementById('alertContainer')
+    const appendAlert = (message, type) => {
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+      ].join('')
+
+      alertContainer.append(wrapper)
+    }
+
+    const alertTrigger = document.getElementById('alertbtn')
+    if (alertTrigger) {
+      alertTrigger.addEventListener('click', () => {
+        appendAlert('哈', 'success')
+      })
+    }
+
+
+
+    const toastBtn = document.querySelector('#toastBtn')
+    const toast = document.querySelector('#toast')
+
+    if (toastBtn) {
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast)
+      toastBtn.addEventListener('click', () => {
+        toastBootstrap.show()
+      })
+    }
+  </script>
+  <script>
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    //...=展開運算子
+  </script>
+</body>
+
+</html>
